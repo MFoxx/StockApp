@@ -81,3 +81,7 @@ footer a {
 footer a:hover{
     color: white;
 }
+
+.hidden {
+    display: none;
+}

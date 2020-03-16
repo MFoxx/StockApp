@@ -1,10 +1,8 @@
 // Defining variables
-let search = 'tsla';
-let endpoint = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=TSLA&apikey=4YYSL2BSK1DK76P1';
 [ input, form ] = [ document.querySelector('.search'), document.querySelector('.form') ];
 
 // Getting DOM elements
-[ DomPrice, DomHigh, DomLow, DomSymbol, DomChange, DomChangePercent, DomPreviousClose, DomLastDay, DomOpen ] = [
+[ DomPrice, DomHigh, DomLow, DomSymbol, DomChange, DomChangePercent, DomPreviousClose, DomLastDay, DomOpen, DomAll] = [
 	document.querySelector('.price'),
 	document.querySelector('.high'),
 	document.querySelector('.low'),
@@ -13,7 +11,8 @@ let endpoint = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=T
 	document.querySelector('.changePercent'),
 	document.querySelector('.previousClose'),
 	document.querySelector('.lastDay'),
-	document.querySelector('.open')
+	document.querySelector('.open'),
+	document.getElementById('stock-info')
 ];
 
 // Function that gets stock and renders data on page
@@ -46,6 +45,7 @@ async function getStock() {
 			DomLastDay.innerHTML = `<span>Last trading day:</span> ${lastTradingDay}`;
 			DomOpen.innerHTML = `<span>Opened at:</span> ${open}`;
 
+
             // Check if stock price gets or loses, adding color to it
 			if (change > 0) {
 				DomChange.setAttribute('id', 'plus');
@@ -60,7 +60,7 @@ async function getStock() {
 				DomChangePercent.setAttribute('id', 'noChange');
 			}
 		})
-		.catch(DomPrice.innerHTML = 'Something went wrong, please try again later');
+		.catch(DomPrice.innerHTML = `${search} is not valid symbol / try tsla`);
 
     // Check for submit on search form
 	form.addEventListener('submit', (event) => {
@@ -76,5 +76,15 @@ async function getStock() {
 	});
 }
 
-// Call function
-getStock();
+form.addEventListener('submit', (event) => {
+	event.preventDefault();
+	search = input.value;
+	input.value = '';
+
+	// Change endpoint url
+	endpoint = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${search}&apikey=4YYSL2BSK1DK76P1`;
+	// Call again getStock function with edited endpoint now
+	getStock();
+	console.clear();
+});
+
