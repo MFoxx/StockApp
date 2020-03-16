@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="icon" href="https://image.flaticon.com/icons/png/512/126/126425.png">
+</head>
+<body>
+    <h1>Stock application</h1>
+
+    <form class='form form__group field'>
+        <input type="text" class='search' name='search'>
+        <label for="search" class='form__label'>Search for stock</label>
+    </form>
+    
+    <p class='symbol'></p>
+
+    <h1 class='price'></h1>
+    <div class="flex">
+        <div class="item">
+            <p class='change'></p>
+            <p class='changePercent'></p>
+        </div>
+    </div>
+    <div class="lowitems">
+        <p class='open'></p>
+        <p class='high'></p>
+        <p class='low'></p>
+        <p class='previousClose'></p>
+        <p class='lastDay'></p>
+    </div>
+
+
+    <div class="placeholder">
+    </div>
+    <footer>
+        <p>This project was created by <a href='http://www.michalgally.maweb.eu'>MFoxx</a> in 100 Days of Code challenge.</p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
